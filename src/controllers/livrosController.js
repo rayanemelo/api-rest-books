@@ -19,7 +19,7 @@ class LivroController {
       }
     })
   }
-
+  //POST
   static cadastrarLivro = (req, res) => {
     let book = new books(req.body);
 
@@ -31,7 +31,7 @@ class LivroController {
       }
     })
   }
-
+  //PUT
   static atualizarLivros = (req, res) => {
     const id = req.params.id;
 
@@ -43,7 +43,17 @@ class LivroController {
       }
     })
   }
-
+  //DELETE
+  static deletarLivro = (req, res) => {
+    const id = req.params.id;
+    books.findByIdAndDelete(id, (err) => {
+      if (!err) {
+        res.status(200).send({ message: "Livro removido com sucesso!" })
+      } else {
+        res.status(500).send({ message: err.message })
+      }
+    })
+  }
 };
 
 export default LivroController;
