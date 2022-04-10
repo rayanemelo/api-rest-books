@@ -25,7 +25,7 @@ app.post('/livros', (req, res) => {
 });
 
 app.put('/livros/:id', (req, res) => {
-  let index = findBooks(req.params.id); //Pegando o id
+  let index = findBooks(req.params.id);
   books[index].titulo = req.body.titulo; //Através da posição, vamos alterar o titulo do livros
   res.json(books);
   res.status(200).send('Livro alterado com sucesso!')
