@@ -20,10 +20,6 @@ app.get('/livros/:id', (req, res) => {
   res.json(books[index]);
 });
 
-app.post('/livros', (req, res) => {
-  books.push(req.body) //Mandar um novo livro, para o corpo da nossa req
-});
-
 app.put('/livros/:id', (req, res) => {
   let index = findBooks(req.params.id);
   books[index].titulo = req.body.titulo; //Através da posição, vamos alterar o titulo do livros
