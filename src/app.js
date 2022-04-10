@@ -20,12 +20,6 @@ app.get('/livros/:id', (req, res) => {
   res.json(books[index]);
 });
 
-app.put('/livros/:id', (req, res) => {
-  let index = findBooks(req.params.id);
-  books[index].titulo = req.body.titulo; //Através da posição, vamos alterar o titulo do livros
-  res.json(books);
-  res.status(200).send('Livro alterado com sucesso!')
-});
 
 app.delete('/livros/:id', (req, res) => {
   let { id } = req.params;
