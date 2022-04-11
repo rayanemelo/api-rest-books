@@ -4,20 +4,23 @@ class LivroController {
 
   //GET
   static listarLivros = (req, res) => {
-    books.find((err, books) =>
-      res.status(200).json(books))
+    books.find()
+      .populate('autor')
+      .exec((err, books) => res.status(200).json(books))
   }
 
   static listarLivroPorId = (req, res) => {
     const id = req.params.id;
 
-    books.findById(id, (err, books) => {
-      if (err) {
-        res.status(400).send({ message: `${err.message} - ID do livro não localizado` })
-      } else {
-        res.status(200).send(books)
-      }
-    })
+    books.findById(id)
+      .populate('autor', 'nome')
+      .exec((err, books) => {
+        if (err) {
+          res.status(400).send({ message: `${err.message} - ID do livro não localizado` })
+        } else {
+          res.status(200).send(books)
+        }
+      })
   }
   //POST
   static cadastrarLivro = (req, res) => {
