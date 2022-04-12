@@ -57,6 +57,14 @@ class LivroController {
       }
     })
   }
+
+  static listarLivroPorEditora = (req, res) => {
+    const editora = req.query.editora //params concatenados
+    //Buscar pela editora. Critério de busca: editora param
+    books.find({ 'editora': editora }, {}, (err, books) => {
+      res.status(200).send(books);
+    })
+  }
 };
 
 export default LivroController;
